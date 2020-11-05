@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="500" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bbe438e9-65a1-475d-a154-ab386c1e9659">
+	<property name="template.type" value="columnar"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#000000" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="trans" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{IDTransaksi}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT detail.IDTransaksi,NamaBarang,Tanggal,Jumlah,Harga,SubTotal,Total,Bayar,Kembalian  FROM transaksi INNER JOIN detail ON transaksi.IDTransaksi = detail.IDTransaksi WHERE detail.IDTransaksi = $P{trans}]]>
+	</queryString>
+	<field name="IDTransaksi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Harga" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NamaBarang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tanggal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Jumlah" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SubTotal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Bayar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Kembalian" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="Jumlah_1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="257" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="120" height="132" uuid="4c1c5493-d8b4-4599-9209-24ac5128915a"/>
+				<imageExpression><![CDATA["src/tubes/logo2.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="118" y="0" width="437" height="93" uuid="ef025a48-331a-4e59-a36e-9b8edccabea8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI" size="48" isBold="false"/>
+				</textElement>
+				<text><![CDATA[APOTEK SEHAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="121" y="93" width="436" height="22" uuid="d46f7280-2e4a-4122-9c49-2749910d33b9"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jl. Sehat No.700 Kel. Urahan Kec. Amatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="115" width="437" height="20" uuid="a83ad7d8-b57a-41d4-ad3b-46f9bb4dc8a3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[Telp/Fax:(022) 87805857 Email: apoteksehat@gmail.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="132" width="434" height="20" uuid="fa132629-a01c-4760-9f0c-f38e5da773e6"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Segoe UI" size="14"/>
+				</textElement>
+				<text><![CDATA[ Kota Cimahi 50412]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="121" y="167" width="132" height="20" forecolor="#000000" uuid="f8a99370-a848-4e21-b6ec-03b5afc34fdd"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[IDTransaksi]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="270" y="167" width="283" height="18" uuid="a2d65d3e-c6d0-45b4-bfa9-8b455a009dbf"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{IDTransaksi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="270" y="185" width="283" height="21" uuid="72119ac0-bfa5-4813-b4a1-09d5e8be8e39"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="121" y="187" width="132" height="20" forecolor="#000000" uuid="d92d6e75-672b-4ec0-bcfd-cacc02c330ed"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="-17" y="237" width="135" height="20" forecolor="#000000" uuid="2d40d00c-684e-4035-bdf1-70ff2bb20a72"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="183" y="237" width="222" height="20" forecolor="#000000" uuid="7a14778c-9ef2-461e-95ac-8a4f2257fa53"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="460" y="237" width="93" height="20" forecolor="#000000" uuid="d5596151-5f83-4eef-9683-1b80c4e98e8c"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="207" width="553" height="30" uuid="d10ff96d-5b2c-44c4-b99b-72d8a74ed3d8"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[============================================================================================]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="-17" y="0" width="135" height="18" uuid="6755cc84-48a0-4db3-8215-e42839af9e77"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NamaBarang}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="299" y="0" width="29" height="18" uuid="8d666527-dd83-4042-85ba-dd95dea4b0de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="Rp #,###" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="183" y="0" width="116" height="18" uuid="f2e8c52a-5613-4d85-bd00-766c813be507"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Harga}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="328" y="0" width="77" height="18" uuid="d2479447-af51-47ab-9e67-1ce8014ab7ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jumlah}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="460" y="0" width="93" height="18" uuid="2fe5705b-1a86-429a-82df-28eda6bcf6a6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SubTotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="137" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="379173ba-d746-4454-98af-9879981c9cc8"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="318" y="54" width="87" height="20" forecolor="#000000" uuid="726bc79a-d6cb-4cad-bb9c-18b041bfd950"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="419" y="52" width="136" height="18" uuid="3151e7d5-cfe8-4b48-9332-8e46c66b4d2b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="318" y="74" width="87" height="20" forecolor="#000000" uuid="8d8dd88c-3a85-4e0c-b921-120f9d72da36"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Bayar]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="419" y="72" width="136" height="18" uuid="449e1298-d9ad-43c9-974f-8a2bdc831913"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Bayar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="318" y="94" width="87" height="20" forecolor="#000000" uuid="baab8e9c-be40-49f3-a66e-225658f23792"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kembalian]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="419" y="92" width="136" height="18" uuid="e4c15daa-da12-477f-90a0-f01ba25a6f8b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Times-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Kembalian}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="3" width="553" height="30" uuid="89ba4d9c-bf6c-4299-930f-d3735bca9ab8"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[============================================================================================]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
